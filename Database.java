@@ -72,4 +72,38 @@ public void update_department(int id, String name) throws SQLException {
             System.out.println("ERORR in Connection with DB");
         }
     }
+public void show_all_department() throws SQLException {
+        if (connection!=null){
+            Statement statement= connection.createStatement();
+            ResultSet resultSet=statement.executeQuery("select name from department");
+            while (resultSet.next()){
+                System.out.println(resultSet.getString(1));
+            }
+        }
+        else {
+            System.out.println("ERORR in Connection with DB");
+        }
+    }
+
+    public void show_all_employer_of_department(String name) throws SQLException {
+        if (connection!=null){
+            Statement statement= connection.createStatement();
+            String sql= String.format("select id from department where name = '%s'",name);
+            ResultSet resultSet=statement.executeQuery(sql);
+            int departmentid=0;
+            while(resultSet.next()) {
+                 departmentid = resultSet.getInt(1);
+            }
+            //sql =  String.format("select firstname,lastname from employer where departmentid = %d",departmentid);
+            sql =  "select firstname,lastname from employer where departmentid = '"+departmentid+"'";
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()){
+                System.out.println(resultSet.getString(1));
+                System.out.println(resultSet.getString(2));
+            }
+        }
+        else {
+            System.out.println("ERORR in Connection with DB");
+        }
+    }
 }
