@@ -28,5 +28,17 @@ public void add_employer(Employer employer, String department) throws SQLExcepti
             System.out.println("ERORR in Connection with DB");
         }
     }
-
+public void add_Department(Department department) throws SQLException {
+        if (connection != null) {
+            Statement statement = connection.createStatement();
+           //tring sql = String.format("insert into department (name, " +
+                            //honenumber) values ('%s',%d)",
+                  //department.getName(), department.getTelephonenumber());
+            String sql = "insert into department (name, phonenumber) values " +
+                    "('"+department.getName()+"','"+department.getTelephonenumber()+"')";
+            int updated_field = statement.executeUpdate(sql);
+        } else {
+            System.out.println("ERORR in Connection with DB");
+        }
+    }
 }
