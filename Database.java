@@ -41,4 +41,26 @@ public void add_Department(Department department) throws SQLException {
             System.out.println("ERORR in Connection with DB");
         }
     }
+    public void update_firstname(int id, String firstname) throws SQLException {
+        if (connection != null) {
+            Statement statement = connection.createStatement();
+            String sql = "update employer set firstname = '"+firstname+"' where id = '"+id+"'";
+            //String sql = String.format("update employer set firstname = '%s' where id = %d",firstname,id);
+            int updated_field = statement.executeUpdate(sql);
+        } else {
+            System.out.println("ERORR in Connection with DB");
+        }
+    }
+
+    public void update_lastname(int id, String lastname) throws SQLException {
+        if (connection != null) {
+            Statement statement = connection.createStatement();
+            //String sql = String.format("update employer set lastname = '%s' where id = %d",lastname,id);
+            String sql = "update employer set lastname = '"+lastname+"' where id = '"+id+"'";
+            int updated_field = statement.executeUpdate(sql);
+        } else {
+            System.out.println("ERORR in Connection with DB");
+        }
+    }
+
 }
